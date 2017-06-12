@@ -16,18 +16,32 @@ var cargarPokemon = function (){
 };
 
 var mostrarPokemones = function (pokemones){
-    var $ul= $("#lista_pokemones");
+    
+    var plantillaFinal = "";
+    pokemones.forEach(function(pokemon, index){
+        plantillaFinal += plantilla.replace(/__nombre__/g, pokemon.name).replace("__numero__", index+1);
+    });
+    $("#lista_pokemones").html(plantillaFinal);
+    
+  /*  var $section= $("#lista_pokemones");
     pokemones.forEach(function(pokemon){
        //console.log (pokemon.name);
-        var $li = $("<li />");
-        $li.text(pokemon.name);
-        $ul.append($li);
+        var $div = $("<div />");
+        $div.text(pokemon.name);
+        $div.addClass = ("pokemon");
+        $div.attr("data-url", pokemon.url);
+        $section.append($div);
        
-        //console.log($li);
-    });
-}
+        //console.log($li);  --- esto esta bien pero la voy a cambiar
+    });*/
+};
 
 
+var plantilla =
+    "<div data-url='//pokeapi.co/api/v2/pokemon-species/__numero__/'>" +
+    "<img src='./assets/img/__nombre__.png' alt=''>" +
+    "<h5>__nombre__</h5>" +
+    "</div>";
 
 
 
